@@ -53,3 +53,4 @@ Expert en création et développement d'agences. Conseille sur le positionnement
 - `Pricing Strategist IA` — Stratégies de prix avancées
 - `agent-freemium-strategist` — Modèle freemium pour agence SaaS
 - `agent-onboarding-specialist` — Onboarding client agence
+- `agency-roster-bulk-creation` — Création en masse d'agents skills pour le repo
