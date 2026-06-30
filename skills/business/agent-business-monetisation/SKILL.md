@@ -42,6 +42,65 @@ Transforme les compétences techniques en revenus. Expert en business models IA,
 4. **Pitcher** avec un one-pager avant/après chiffré en DZD
 5. **Déployer** sur le VPS du client ou en SaaS
 
+## Vente de Packs de Skills (Digital Products)
+
+### Plateformes de vente
+| Plateforme | URL | Modèle | Prix suggéré pack 24 agents |
+|------------|-----|--------|------------------------------|
+| **Gumroad** | https://gumroad.com/signup | Zip téléchargeable | $19-49 |
+| **Lemon Squeezy** | https://lemonsqueezy.com | Pack premium + support | $29-69 |
+| **Fiverr** | https://www.fiverr.com/join | Gig "Setup AI Agency" | $100-500/client |
+| **Upwork** | https://www.upwork.com/nx/signup | Contract consultant IA | $50-150/hr |
+
+### Stratégie Open Core (recommandée)
+1. **GitHub** : Pack gratuit (visibilité + étoiles + SEO)
+2. **Gumroad/Lemon Squeezy** : Pack premium payant (version étendue + templates + support)
+3. **Fiverr/Upwork** : Service personnalisé (installation + configuration + formation)
+
+### Paiements depuis l'Algérie
+- **Payoneer** → https://www.payoneer.com (reçoit Gumroad, Fiverr, Upwork — meilleur pour DZ)
+- **Wise** → https://wise.com (alternative, mais pas toujours disponible en DZ)
+- **PayPal** → limité en Algérie (réception seulement, pas de compte local complet)
+- **Ordre prioritaire** : GitHub (gratuit) → Gumroad (gratuit) → Payoneer (gratuit) → Fiverr (gratuit)
+
+### Étapes pour vendre le pack
+1. Push le repo GitHub (visibilité, crédibilité, SEO)
+2. Créer produit Gumroad : titre, description, screenshots, prix
+3. Créer gig Fiverr : "I'll set up a complete AI Agency with 24 specialized agents"
+4. Ouvrir compte Payoneer pour recevoir les paiements
+5. Promouvoir sur Twitter/LinkedIn/TikTok avec demos
+
+### ⚠️ Point commercial clé : Universalité des skills
+Les SKILL.md sont des **prompts markdown universels** — ils fonctionnent avec TOUT outil IA :
+- Claude Code → copier dans `CLAUDE.md`
+- Cursor → copier dans `.cursorrules`
+- ChatGPT → copier dans Custom Instructions
+- Copilot → copier en workspace instructions
+- Hermes Agent → `cp` dans `~/.hermes/skills/`
+- N'importe quel chat IA → copier-coller directement
+
+**C'est un avantage commercial majeur** : le client n'a besoin d'RIEN d'autre que son AI habituelle. Pas d'installation, pas de VPS, pas d'Hermes. Vendre comme "works with any AI tool" élargit le marché de 10x.
+
+### GitHub : workflow de publication
+```bash
+# 1. Créer le repo via API (nécessite un PAT GitHub avec scope repo)
+curl -s -X POST https://api.github.com/user/repos \
+  -H "Authorization: token <PAT>" \
+  -d '{"name":"agency-roster","description":"...","public":true}'
+
+# 2. Push les skills
+cd /tmp/agency-roster && git init
+git add -A && git commit -m "Initial commit"
+git remote add origin https://<PAT>@github.com/<user>/agency-roster.git
+git push -u origin main
+
+# 3. Sécurité : ne JAMAIS laisser le PAT dans l'historique bash
+history -c
+```
+
+### Piège : PAT GitHub en clair
+Si un PAT apparaît dans l'historique bash, le nettoyer immédiatement (`history -c`). Pour une sécurité maximale, régénérer le token après usage sur https://github.com/settings/tokens
+
 ## Connexions Knowledge Graph
 - [[biz-whatsapp-agents]] — Plateforme IA WhatsApp (marché DZ)
 - [[biz-ai-vocal-agents]] — Agents vocaux (même marché, canal voix)

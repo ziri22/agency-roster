@@ -24,10 +24,11 @@ Optimise le choix et le routing des modèles IA : quel modèle pour quelle tâch
 - **IA Engineering** : ML models, deployment, AI integration, LLM fine-tuning, RAG pipelines
 - **LLM Routing** : Modèles locaux (Ollama) → cloud (NVIDIA NIM), fallback intelligent
 - **Model Ops** : Benchmark, comparaison, sélection du bon modèle pour chaque tâche
-- **Modèles locaux** : Ollama (qwen2.5-coder:7b, llama3.2:3b) — gratuits, privés, offline
+- **Modèles locaux** : Ollama (qwen3:8b, llama3.2:3b) — gratuits, privés, offline
 - **Cloud gratuit** : NVIDIA NIM (DeepSeek V4, GLM-5.1) — haute perf, 0€
 - **Routing intelligent** : Tâche simple → local rapide, tâche complexe → cloud puissant
-- **Fallbacks** : qwen2.5-coder:7b → llama3.2:3b → deepseek-v4-flash (NVIDIA)
+- **Fallbacks** : qwen3:8b → llama3.2:3b → deepseek-v4-flash (NVIDIA)
+- **⚠️ Context minimum** : Hermes exige ≥64K tokens. Tout modèle local <64K DOIT avoir `context_length` override dans config.yaml. qwen3:8b = 40K (override requis), llama3.2:3b = 128K (OK natif)
 - **Coûts** : Local = 0€ (limité RAM/CPU), Cloud = 0€ (rate-limited), SaaS = 20-200€/mois
 - **Fine-tuning** : Prompts adaptés Darija/Français pour modèles locaux
 
@@ -35,15 +36,19 @@ Optimise le choix et le routing des modèles IA : quel modèle pour quelle tâch
 | Tâche | Modèle local | Modèle cloud | Priorité |
 |---|---|---|---|
 | Chat simple | llama3.2:3b (~21s) | — | Local |
-| Code/Dev | qwen2.5-coder:7b (~27s) | deepseek-v4-flash | Local → Cloud |
+| Code/Dev | qwen3:8b (~15s) | deepseek-v4-flash | Local → Cloud |
 | Analysis longue | — | deepseek-v4-flash | Cloud |
 | RAG/Recherche | — | glm-5.1:cloud | Cloud |
-| Veille/Résumé | qwen2.5-coder:7b | deepseek-v4-flash | Local → Cloud |
+| Veille/Résumé | qwen3:8b | deepseek-v4-flash | Local → Cloud |
 
 ## Modèles dépréciés
+- ❌ `qwen2.5-coder:7b` : Context 32K < minimum Hermes 64K. Supprimé et remplacé par qwen3:8b.
 - ❌ `qwen3:4b` : Thinking cassé via API, supprimé
-- ❌ `devstral:24b` : Timeout sur CPU
+- ❌ `devstral:24b` : Timeout sur CPU (14GB, trop lent sans GPU), supprimé
 - ❌ Payants (ChatGPT, Claude API) : Remplacés par NVIDIA NIM gratuit
+
+## ⚠️ Piège : Context window minimum
+Hermes exige un minimum de 64K tokens de contexte. Si un modèle Ollama a <64K, le cron health-check plante avec `ValueError`. Solution : soit utiliser un modèle avec ≥64K (llama3.2:3b = 128K ✅), soit ajouter `context_length` override dans `fallback_providers` dans config.yaml. Exemple : `{model: qwen3:8b, context_length: 40960}`.
 
 ## Workflow typique
 1. **Évaluer** la complexité de la tâche
@@ -56,3 +61,6 @@ Optimise le choix et le routing des modèles IA : quel modèle pour quelle tâch
 - [[agent-ollama-models]] — Modèles locaux & cloud
 - [[tool-model-routing]] — Stratégie de routing
 - [[service-ollama]] — Serveur Ollama local
+
+## Références
+- `references/context-window-requirements.md` — Table des contextes par modèle, override config, fix cron jobs
