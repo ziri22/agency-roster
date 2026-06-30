@@ -2,13 +2,13 @@
 
 # 🏢 The Agency Roster
 
-### 24 AI Agent Skills for Hermes Agent
+### 24 Specialized AI Agents — Works with ANY AI Tool
 
 **Build the future, one commit at a time.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Skills: 24](https://img.shields.io/badge/Skills-24-brightgreen.svg)]()
-[![Hermes Agent](https://img.shields.io/badge/Powered%20by-Hermes%20Agent-purple.svg)](https://hermes-agent.nousresearch.com)
+[![Agents: 24](https://img.shields.io/badge/Agents-24-brightgreen.svg)]()
+[![Compatible](https://img.shields.io/badge/Works%20With-Any%20AI%20Tool-purple.svg)]()
 
 </div>
 
@@ -16,9 +16,23 @@
 
 ## 🚀 What is this?
 
-**The Agency Roster** is a complete team of 24 specialized AI agent skills for [Hermes Agent](https://hermes-agent.nousresearch.com). Each agent is an expert in its domain — from frontend development to brand design, from DevOps to image generation.
+**The Agency Roster** is a complete team of 24 specialized AI agent prompts. Each agent is an expert in its domain — from frontend development to brand design, from DevOps to image generation.
 
 Instead of one generic AI, you get **a full agency** that you can activate on demand.
+
+### ✅ Works With Everything
+
+| Platform | How to Use |
+|----------|-----------|
+| **Claude Code** | Copy as `CLAUDE.md` in your project |
+| **Cursor** | Paste in `.cursorrules` |
+| **ChatGPT** | Use as Custom Instructions |
+| **Copilot** | Use as workspace instructions |
+| **Hermes Agent** | Drop in `~/.hermes/skills/` |
+| **Any AI Chat** | Paste the agent prompt directly |
+| **n8n / Make** | Use as system prompts in workflows |
+
+---
 
 ## 📋 The 24 Agents
 
@@ -60,41 +74,34 @@ Instead of one generic AI, you get **a full agency** that you can activate on de
 | **AI Models & Routing** | Ollama, NVIDIA NIM, LLM routing | Local/cloud model orchestration |
 | **NVIDIA SkillSpector** | NIM models, benchmark, routing | Model evaluation and optimization |
 | **Research & Watch** | Tech trends, arXiv, YouTube insights | Technology monitoring and analysis |
-| **Kittle Code Intelligence** | Repo analysis, Mermaid diagrams, multi-model | Code intelligence and architecture |
+
+---
 
 ## ⚡ Quick Start
 
-### Install All Agents
+### Option 1: Copy-Paste (Any AI Tool)
+Just open the agent's `SKILL.md` and paste its content into your AI chat. That's it.
 
+### Option 2: Claude Code / Cursor
 ```bash
-# Clone the roster
-git clone https://github.com/ziri22/agency-roster.git
+# Copy the agent you need into your project
+cp skills/business/agent-frontend-developer/SKILL.md ./CLAUDE.md
+# or for Cursor:
+cp skills/business/agent-frontend-developer/SKILL.md ./.cursorrules
+```
 
-# Copy all skills to your Hermes skills directory
-cp -r agency-roster/skills/* ~/.hermes/skills/
-
-# Restart Hermes to load new skills
+### Option 3: Hermes Agent
+```bash
+cp -r skills/* ~/.hermes/skills/
 hermes restart
 ```
 
-### Install a Single Agent
+### Option 4: Use as Custom Instructions (ChatGPT)
+Open any agent's SKILL.md → Copy → Paste into ChatGPT Custom Instructions.
 
-```bash
-# Just copy the agent you need
-cp -r agency-roster/skills/business/agent-frontend-developer ~/.hermes/skills/business/
-```
+---
 
-### Use in Hermes
-
-Just mention the agent's specialty in your prompt:
-
-```
-"Design a landing page for my SaaS"  → UI Designer activates
-"Set up CI/CD for my project"        → DevOps Automator activates
-"Create a mobile app for delivery"   → Mobile App Builder activates
-```
-
-## 🏗️ Architecture
+## 🏗️ Repository Structure
 
 ```
 agency-roster/
@@ -104,31 +111,32 @@ agency-roster/
 │       ├── agent-backend-architect/SKILL.md
 │       ├── agent-mobile-app-builder/SKILL.md
 │       ├── agent-ui-designer/SKILL.md
-│       ├── ... (24 agents total)
-│       └── agent-image-prompt-engineer/SKILL.md
+│       └── ... (24 agents total)
 ├── LICENSE
 └── README.md
 ```
 
-Each agent follows the standard Hermes SKILL.md format:
+Each agent follows a universal format:
 
-```yaml
+```markdown
 ---
 name: agent-frontend-developer
-description: "Frontend Developer IA — Expert en interfaces web modernes..."
+description: "Frontend Developer — Modern web interfaces..."
 author: "Ziri Yahi"
 tags: [frontend, react, vue, angular, tailwind, shadcn]
 ---
 
-# 🎨 Frontend Developer IA
-## Rôle, Compétences, Workflow, Pièges connus, Connexions
+# 🎨 Frontend Developer
+
+## Rôle
+## When to Use
+## Key Skills
+## Typical Workflow
+## Known Pitfalls
+## Knowledge Graph Connections
 ```
 
-## 🛠️ Requirements
-
-- [Hermes Agent](https://hermes-agent.nousresearch.com) installed
-- Python 3.10+
-- Ollama (for local models) or NVIDIA NIM (for cloud)
+---
 
 ## 📄 License
 
